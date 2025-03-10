@@ -1,14 +1,14 @@
-#from tabla_verdad import TablaVerdad
+from tabla import TablaVerdad
 import os
 
 class Menu:
-    # def __init__(self):
-    #     self.tabla = TablaVerdad()
+    def __init__(self):
+        self.tabla = TablaVerdad()
 
     def clearScreen(self):
         os.system('cls')
 
-    def mostrar_menu(self):
+    def mostrarMenu(self):
         while True:
             print('\n               GENERADOR DE TABLAS DE VERDAD - DIEGO BRAN')
             print('\n1. Generar tabla de verdad')
@@ -32,7 +32,3 @@ class Menu:
                 else:
                     print('Error: Ingrese un número válido (1 o 2)')
         
-
-menu = Menu()
-menu.mostrar_menu()
-
