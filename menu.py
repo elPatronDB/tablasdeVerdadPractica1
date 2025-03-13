@@ -1,4 +1,4 @@
-from tabla import TablaVerdad
+from tabla import verdad
 import os
 
 class Menu:

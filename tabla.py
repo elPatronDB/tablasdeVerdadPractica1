@@ -27,24 +27,23 @@ class TablaVerdad:
                 print(f'Error: {e}. Intente de nuevo.')
 
     def ingresar_datos(self):
-        # Solicitar variables
+
         while True:
             try:
                 entrada = input('Ingrese variables (1-3) separadas por comas').replace(' ', '').lower()
                 if not entrada:
                     raise ValueError('Ingrese una variable como mínimo')
-                vars = entrada.split(',')
-                if not (1 <= len(vars) <= 3):
+                variable_input = entrada.split(',')
+                if not (1 <= len(variable_input) <= 3):
                     raise ValueError('Debe ingresar entre 1 y 3 variables')
-                for var in vars:
-                    if not (len(var) == 1 and var.isalpha()):
-                        raise ValueError(f''{var}' no puede usarse como variable, se recomienda usar letras')
-                self.variables = vars
+                for variable_s in variable_input:
+                    if not (len(variable_s) == 1 and variable_s.isalpha()):
+                        raise ValueError(f''{variable_s}' no puede usarse como variable, se recomienda usar letras')
+                self.variables = variable_input
                 break
             except ValueError as e:
                 print(f'Error: {e}. Intente de nuevo.')
 
-        # Solicitar expresiones
         while True:
             try:
                 n_expresiones = int(input('¿Cuántas expresiones desea ingresar (1-3)? '))
@@ -55,19 +54,19 @@ class TablaVerdad:
                     print(f'\nExpresión {i+1}:')
                     tipo = input('¿Es una variable sola (s) o una expresión con conector (c)? ').lower()
                     if tipo == 's':
-                        var = input('Ingrese la variable: ').lower()
-                        if len(var) != 1 or not var.isalpha() or var not in self.variables:
-                            raise ValueError(f''{var}' no es válida o no está en las variables ingresadas.')
-                        self.expresiones.append(var)
+                        variable_s = input('Ingrese la variable: ').lower()
+                        if len(variable_s) != 1 or not variable_s.isalpha() or variable_s not in self.variables:
+                            raise ValueError(f''{variable_s}' no es válida o no está en las variables ingresadas.')
+                        self.expresiones.append(variable_s)
                     elif tipo == 'c':
-                        var1 = input('Ingrese la primera variable: ').lower()
-                        if len(var1) != 1 or not var1.isalpha() or var1 not in self.variables:
-                            raise ValueError(f''{var1}' no es válida o no está en las variables ingresadas.')
+                        variable_s1 = input('Ingrese la primera variable: ').lower()
+                        if len(variable_s1) != 1 or not variable_s1.isalpha() or variable_s1 not in self.variables:
+                            raise ValueError(f''{variable_s1}' no es válida o no está en las variables ingresadas.')
                         conector = self.mostrar_conectores()
-                        var2 = input('Ingrese la segunda variable: ').lower()
-                        if len(var2) != 1 or not var2.isalpha() or var2 not in self.variables:
-                            raise ValueError(f''{var2}' no es válida o no está en las variables ingresadas.')
-                        self.expresiones.append(var1 + conector + var2)
+                        variable_s2 = input('Ingrese la segunda variable: ').lower()
+                        if len(variable_s2) != 1 or not variable_s2.isalpha() or variable_s2 not in self.variables:
+                            raise ValueError(f''{variable_s2}' no es válida o no está en las variables ingresadas.')
+                        self.expresiones.append(variable_s1 + conector + variable_s2)
                     else:
                         raise ValueError('Responda 's' para variable sola o 'c' para conector.')
                 break
@@ -79,19 +78,19 @@ class TablaVerdad:
         for expr in expresiones:
             if len(expr) > 3 or (len(expr) == 3 and expr[1] not in operadores):
                 return False
-            vars_en_expr = [c for c in expr if c.isalpha()]
-            if len(vars_en_expr) > 2:
+            variable_input_en_expr = [c for c in expr if c.isalpha()]
+            if len(variable_input_en_expr) > 2:
                 return False
-            for var in vars_en_expr:
+            for var in variable_input_en_expr:
                 if var not in self.variables:
                     return False
         return True
 
     def generar_tabla(self):
-        n_vars = len(self.variables)
+        n_variable_input = len(self.variables)
         combinaciones = []
-        for i in range(2 ** n_vars):
-            fila = [int(bit) for bit in format(i, f'0{n_vars}b')]
+        for i in range(2 ** n_variable_input):
+            fila = [int(bit) for bit in format(i, f'0{n_variable_input}b')]
             combinaciones.append(fila)
 
         encabezado = ' | '.join(self.variables + self.expresiones)
