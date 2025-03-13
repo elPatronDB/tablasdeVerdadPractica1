@@ -38,7 +38,7 @@ class TablaVerdad:
                     raise ValueError('Debe ingresar entre 1 y 3 variables')
                 for variable_s in variable_input:
                     if not (len(variable_s) == 1 and variable_s.isalpha()):
-                        raise ValueError(f''{variable_s}' no puede usarse como variable, se recomienda usar letras')
+                        raise ValueError(f"{variable_s}' no puede usarse como variable, se recomienda usar letras")
                 self.variables = variable_input
                 break
             except ValueError as e:
@@ -56,19 +56,19 @@ class TablaVerdad:
                     if tipo == 's':
                         variable_s = input('Ingrese la variable: ').lower()
                         if len(variable_s) != 1 or not variable_s.isalpha() or variable_s not in self.variables:
-                            raise ValueError(f''{variable_s}' no es válida o no está en las variables ingresadas.')
+                            raise ValueError(f"{variable_s}' no es válida o no está en las variables ingresadas.")
                         self.expresiones.append(variable_s)
                     elif tipo == 'c':
                         variable_s1 = input('Ingrese la primera variable: ').lower()
                         if len(variable_s1) != 1 or not variable_s1.isalpha() or variable_s1 not in self.variables:
-                            raise ValueError(f''{variable_s1}' no es válida o no está en las variables ingresadas.')
+                            raise ValueError(f"{variable_s1}' no es válida o no está en las variables ingresadas.")
                         conector = self.mostrar_conectores()
                         variable_s2 = input('Ingrese la segunda variable: ').lower()
                         if len(variable_s2) != 1 or not variable_s2.isalpha() or variable_s2 not in self.variables:
-                            raise ValueError(f''{variable_s2}' no es válida o no está en las variables ingresadas.')
+                            raise ValueError(f"{variable_s2}' no es válida o no está en las variables ingresadas.")
                         self.expresiones.append(variable_s1 + conector + variable_s2)
                     else:
-                        raise ValueError('Responda 's' para variable sola o 'c' para conector.')
+                        raise ValueError("Responda 's' para variable sola o 'c' para conector.")
                 break
             except ValueError as e:
                 print(f'Error: {e}. Intente de nuevo.')
