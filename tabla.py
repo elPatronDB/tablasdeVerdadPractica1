@@ -22,7 +22,7 @@ class TablaVerdad:
                 opcion = input('Ingrese el número del conector: ').strip()
                 if opcion not in self.conectores:
                     raise ValueError('Opción inválida.')
-                return self.conectores[opcion][0]  # Devuelve el símbolo (ej. '^')
+                return self.conectores[opcion][0]
             except ValueError as e:
                 print(f'Error: {e}. Intente de nuevo.')
 
